@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.8.1.801090054495">
+
+    <!-- See retype.com -->
+    <meta name="generator" content="Retype 3.8.1">
+
+    <!-- Primary Meta Tags -->
+    <title>TutorialsMPV Guide - Master MPV Player</title>
+    <meta name="title" content="TutorialsMPV Guide - Master MPV Player">
+    <meta name="description" content="Master advanced mpv techniques for streaming, hardware acceleration, and subtitles">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://mpv-guide.local/tutorials/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mpv-guide.local/tutorials/">
+    <meta property="og:title" content="TutorialsMPV Guide - Master MPV Player">
+    <meta property="og:description" content="Master advanced mpv techniques for streaming, hardware acceleration, and subtitles">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mpv-guide.local/tutorials/">
+    <meta property="twitter:title" content="TutorialsMPV Guide - Master MPV Player">
+    <meta property="twitter:description" content="Master advanced mpv techniques for streaming, hardware acceleration, and subtitles">
+
+    <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="../resources/css/retype.css?v=3.8.1.801090054495" rel="stylesheet">
+
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.8.1.801090054495" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/retype.js?v=3.8.1" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.8.1.801090054495" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.8.1.801090054495" defer></script>
+</head>
+<body>
+    <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+        <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+    
+        <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+            <div class="container relative flex items-center justify-between pr-6 grow md:justify-start">
+                <!-- Mobile menu button skeleton -->
+                <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+                <div v-cloak id="docs-sidebar-toggle"></div>
+        
+                <!-- Logo -->
+                <div class="flex items-center justify-between h-full py-2 md:w-75">
+                    <div class="flex items-center px-2 md:px-6">
+                        <a id="docs-site-logo" href="../" class="flex items-center leading-snug text-2xl">
+                            <span class="w-10 mr-2 grow-0 shrink-0 overflow-hidden">
+                                <img class="max-h-10 dark:hidden md:inline-block" src="../assets/images/logo.png">
+                                <img class="max-h-10 hidden dark:inline-block" src="../assets/images/logo.png">
+                            </span>
+                            <span class="dark:text-white font-bold line-clamp-1 md:line-clamp-2">MPV Guide</span>
+                        </a><span class="hidden px-2 py-1 ml-4 text-sm font-semibold leading-none text-root-logo-label-text bg-root-logo-label-bg rounded-sm md:inline-block">Guide</span>
+                    </div>
+        
+                    <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+                </div>
+        
+                <div class="flex justify-between md:grow">
+                    <!-- Top Nav -->
+                    <nav class="hidden md:flex">
+                        <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+                            
+                        </ul>
+                    </nav>
+        
+                    <!-- Header Right Skeleton -->
+                    <div v-cloak class="flex justify-end grow skeleton">
+        
+                        <!-- Search input mock -->
+                        <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                            <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                            </div>
+                            <input class="w-full h-10 placeholder-gray-400 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 dark:placeholder-dark-400" style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search">
+                        </div>
+        
+                        <!-- Mobile search button -->
+                        <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                        </div>
+        
+                        <!-- Dark mode switch placeholder -->
+                        <div class="w-10 h-10 lg:ml-2"></div>
+        
+                        <!-- History button -->
+                        <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                        </div>
+                    </div>
+        
+                    <div v-cloak class="flex justify-end grow">
+                        <div id="docs-mobile-search-button"></div>
+                        <doc-search-desktop></doc-search-desktop>
+        
+                        <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                        <doc-history></doc-history>
+                    </div>
+                </div>
+            </div>
+        </header>
+    
+        <div class="container relative flex bg-white">
+            <!-- Sidebar Skeleton -->
+            <div v-cloak class="fixed flex flex-col shrink-0 duration-300 ease-in-out bg-white border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+            
+                <div class="flex items-center h-16 px-6">
+                    <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter">
+                </div>
+            
+                <div class="pl-6 mt-1 mb-4">
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                    <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+                </div>
+            
+                <div class="shrink-0 mt-auto bg-transparent dark:border-dark-650">
+                    <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                        <span class="text-xs whitespace-nowrap">Powered by</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Sidebar component -->
+            <doc-sidebar v-cloak>
+                <template #sidebar-footer>
+                    <div class="shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650">
+            
+                        <a class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in docs-powered-by" target="_blank" href="https://retype.com/" rel="noopener">
+                            <span class="text-xs whitespace-nowrap">Powered by</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+                        </a>
+                    </div>
+                </template>
+            </doc-sidebar>
+    
+            <div class="grow min-w-0 dark:bg-dark-850">
+                <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+                <div class="flex">
+                    <div class="min-w-0 p-4 grow md:px-16">
+                        <main class="relative pb-12 lg:pt-2">
+                            <div class="docs-markdown" id="docs-content">
+                                <!-- Rendered if sidebar right is enabled -->
+                                <div id="docs-sidebar-right-toggle"></div>
+                                <!-- Page content  -->
+<doc-anchor-target id="tutorials" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#tutorials">#</doc-anchor-trigger>
+        <span>Tutorials</span>
+    </h1>
+</doc-anchor-target>
+<p>This section provides in-depth guides to enhance your <a href="https://mpv.io/">mpv</a> experience with advanced techniques, building on <a href="../usage/">Usage</a> and <a href="../configuration/">Configuration</a>. These tutorials reflect best practices as of May 2025.</p>
+<doc-anchor-target id="streaming-youtube">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#streaming-youtube">#</doc-anchor-trigger>
+        <span>Streaming YouTube</span>
+    </h2>
+</doc-anchor-target>
+<p>Stream YouTube videos directly in mpv using <code v-pre>yt-dlp</code> for high-quality playback.</p>
+<doc-anchor-target id="setup">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#setup">#</doc-anchor-trigger>
+        <span>Setup</span>
+    </h3>
+</doc-anchor-target>
+<ol>
+<li><strong>Install <code v-pre>yt-dlp</code></strong>:
+<ul>
+<li><strong>Windows</strong>: In PowerShell, run <code v-pre>pip install yt-dlp</code>.</li>
+<li><strong>macOS/Linux</strong>: Use <code v-pre>sudo apt install yt-dlp</code> (Debian/Ubuntu) or <code v-pre>brew install yt-dlp</code> (macOS).</li>
+</ul>
+</li>
+<li><strong>Verify installation</strong>: Run <code v-pre>yt-dlp --version</code> to confirm.</li>
+</ol>
+<doc-anchor-target id="streaming-a-video">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#streaming-a-video">#</doc-anchor-trigger>
+        <span>Streaming a Video</span>
+    </h3>
+</doc-anchor-target>
+<p>Play a YouTube video:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">mpv https://www.youtube.com/watch?v=VIDEO_ID</code></pre>
+</doc-codeblock></div>
+<p>Replace <code v-pre>VIDEO_ID</code> with the video’s ID (e.g., <code v-pre>dQw4w9WgXcQ</code>).</p>
+<doc-anchor-target id="controlling-stream-quality">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#controlling-stream-quality">#</doc-anchor-trigger>
+        <span>Controlling Stream Quality</span>
+    </h3>
+</doc-anchor-target>
+<p>Select a specific resolution to optimize performance:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">mpv --ytdl-format=&quot;bestvideo[height&lt;=1080]+bestaudio/best&quot; https://www.youtube.com/watch?v=VIDEO_ID</code></pre>
+</doc-codeblock></div>
+<p>For persistent quality settings, add to <code v-pre>mpv.conf</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">ytdl-format=bestvideo[height&lt;=1080]+bestaudio/best</code></pre>
+</doc-codeblock></div>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-green-700 bg-green-100 h-6 px-2 text-xs rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M21.03 5.72a.75.75 0 0 1 0 1.06l-11.5 11.5a.747.747 0 0 1-1.072-.012l-5.5-5.75a.75.75 0 1 1 1.084-1.036l4.97 5.195L19.97 5.72a.75.75 0 0 1 1.06 0Z"/></g></svg></span>
+    <span>Tip</span>
+</span> Update <code v-pre>yt-dlp</code> regularly with <code v-pre>pip install --upgrade yt-dlp</code> to ensure compatibility.</p>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-yellow-900 bg-yellow-100 h-6 px-2 text-xs rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M13 17.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-8.25a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0v-4.5Z"/><path d="M9.836 3.244c.963-1.665 3.365-1.665 4.328 0l8.967 15.504c.963 1.667-.24 3.752-2.165 3.752H3.034c-1.926 0-3.128-2.085-2.165-3.752Zm3.03.751a1.002 1.002 0 0 0-1.732 0L2.168 19.499A1.002 1.002 0 0 0 3.034 21h17.932a1.002 1.002 0 0 0 .866-1.5L12.866 3.994Z"/></g></svg></span>
+    <span>Warning</span>
+</span> Invalid URLs or outdated <code v-pre>yt-dlp</code> may cause streaming errors.</p>
+<p>[Placeholder for video: Streaming YouTube with mpv, <code v-pre>/static/tutorials/mpv/mpv-youtube-streaming.mp4</code>]</p>
+<doc-anchor-target id="hardware-acceleration">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#hardware-acceleration">#</doc-anchor-trigger>
+        <span>Hardware Acceleration</span>
+    </h2>
+</doc-anchor-target>
+<p>Optimize performance by enabling hardware decoding, which offloads video processing to your GPU, as introduced in <a href="../configuration/#basic-config">Configuration</a>.</p>
+<doc-anchor-target id="choosing-the-right-api">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#choosing-the-right-api">#</doc-anchor-trigger>
+        <span>Choosing the Right API</span>
+    </h3>
+</doc-anchor-target>
+<p>Select the appropriate hardware decoding API for your platform and GPU:</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Platform</th>
+<th>Recommended API</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows</td>
+<td><code v-pre>d3d11va</code> (NVIDIA/AMD)</td>
+<td><code v-pre>--hwdec=d3d11va</code></td>
+</tr>
+<tr>
+<td>Linux</td>
+<td><code v-pre>vaapi</code> (Intel/AMD)</td>
+<td><code v-pre>--hwdec=vaapi</code></td>
+</tr>
+<tr>
+<td>macOS</td>
+<td><code v-pre>videotoolbox</code></td>
+<td><code v-pre>--hwdec=videotoolbox</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For automatic selection, add to <code v-pre>mpv.conf</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">hwdec=auto
+vo=gpu</code></pre>
+</doc-codeblock></div>
+<p>Or specify on the command line:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">mpv --hwdec=auto --vo=gpu video.mp4</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="testing-hardware-acceleration">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#testing-hardware-acceleration">#</doc-anchor-trigger>
+        <span>Testing Hardware Acceleration</span>
+    </h3>
+</doc-anchor-target>
+<ol>
+<li>Play a video with hardware acceleration enabled:
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">mpv --hwdec=auto video.mp4</code></pre>
+</doc-codeblock></div>
+</li>
+<li>During playback, press the <code v-pre>i</code> key to cycle through on-screen display (OSD) information levels.</li>
+<li>Look for indicators of hardware decoding:
+<ul>
+<li><code v-pre>hwdec: yes</code> or <code v-pre>hwdec: no</code></li>
+<li>The specific decoder in use (e.g., <code v-pre>d3d11va</code>, <code v-pre>vaapi</code>, <code v-pre>videotoolbox</code>)</li>
+</ul>
+</li>
+<li>If <code v-pre>hwdec: yes</code> and the decoder name appear, hardware acceleration is active.</li>
+</ol>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-blue-500 dark:text-blue-400 border border-blue-500 dark:border-blue-400 h-6 px-2 text-xs rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M13 7.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-3 3.75a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v4.25h.75a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5h.75V12h-.75a.75.75 0 0 1-.75-.75Z"/><path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1ZM2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5 9.5 9.5 0 0 0 2.5 12Z"/></g></svg></span>
+    <span>Note</span>
+</span> If <code v-pre>hwdec: no</code> is shown, try specifying the decoder explicitly (e.g., <code v-pre>--hwdec=d3d11va</code> on Windows).</p>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-yellow-900 bg-yellow-100 h-6 px-2 text-xs rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M13 17.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-8.25a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0v-4.5Z"/><path d="M9.836 3.244c.963-1.665 3.365-1.665 4.328 0l8.967 15.504c.963 1.667-.24 3.752-2.165 3.752H3.034c-1.926 0-3.128-2.085-2.165-3.752Zm3.03.751a1.002 1.002 0 0 0-1.732 0L2.168 19.499A1.002 1.002 0 0 0 3.034 21h17.932a1.002 1.002 0 0 0 .866-1.5L12.866 3.994Z"/></g></svg></span>
+    <span>Warning</span>
+</span> Hardware decoding may fail on older GPUs. Disable with <code v-pre>--hwdec=no</code> if issues occur.</p>
+<p>[Placeholder for gif: Checking hardware acceleration status, <code v-pre>/static/tutorials/mpv/mpv-hwdec-check.gif</code>]</p>
+<doc-anchor-target id="managing-subtitles">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#managing-subtitles">#</doc-anchor-trigger>
+        <span>Managing Subtitles</span>
+    </h2>
+</doc-anchor-target>
+<p>Customize subtitles for clarity or adjust timing for synchronization, building on <a href="../usage/#managing-subtitles">Usage</a>.</p>
+<doc-anchor-target id="loading-subtitles">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#loading-subtitles">#</doc-anchor-trigger>
+        <span>Loading Subtitles</span>
+    </h3>
+</doc-anchor-target>
+<ul>
+<li><strong>Automatic Loading</strong>: Place subtitle files (e.g., <code v-pre>video.srt</code>) in the same directory as the video. mpv loads them if <code v-pre>sub-auto=fuzzy</code> is set in <code v-pre>mpv.conf</code>.</li>
+<li><strong>Manual Loading</strong>: Specify a subtitle file:
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">mpv --sub-file=subtitles.srt video.mp4</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<doc-anchor-target id="customizing-subtitles">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#customizing-subtitles">#</doc-anchor-trigger>
+        <span>Customizing Subtitles</span>
+    </h3>
+</doc-anchor-target>
+<p>Modify appearance in <code v-pre>mpv.conf</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">sub-font=&quot;Arial&quot;        # Font style
+sub-font-size=48        # Font size
+sub-color=#FFFFFF       # Text color
+sub-bold=yes            # Bold text
+sub-margin-y=40         # Vertical margin
+sub-border-size=2       # Border thickness</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="adjusting-subtitle-timing">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#adjusting-subtitle-timing">#</doc-anchor-trigger>
+        <span>Adjusting Subtitle Timing</span>
+    </h3>
+</doc-anchor-target>
+<p>Fix out-of-sync subtitles:</p>
+<ul>
+<li>Delay subtitles by 0.5 seconds:
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">mpv --sub-delay=0.5 video.mp4</code></pre>
+</doc-codeblock></div>
+</li>
+<li>Advance subtitles by 0.5 seconds:
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-bash"><code v-pre class="language-bash">mpv --sub-delay=-0.5 video.mp4</code></pre>
+</doc-codeblock></div>
+</li>
+</ul>
+<p>During playback, use:</p>
+<ul>
+<li><code v-pre>z</code>: Increase subtitle delay by 0.1 seconds.</li>
+<li><code v-pre>Z</code>: Decrease subtitle delay by 0.1 seconds.</li>
+</ul>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-green-700 bg-green-100 h-6 px-2 text-xs rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M21.03 5.72a.75.75 0 0 1 0 1.06l-11.5 11.5a.747.747 0 0 1-1.072-.012l-5.5-5.75a.75.75 0 1 1 1.084-1.036l4.97 5.195L19.97 5.72a.75.75 0 0 1 1.06 0Z"/></g></svg></span>
+    <span>Tip</span>
+</span> Add <code v-pre>sub-delay=0.5</code> to <code v-pre>mpv.conf</code> for persistent timing adjustments.</p>
+<p>[Placeholder for screenshot: Customized subtitles in mpv, <code v-pre>/static/tutorials/mpv/mpv-subtitles.png</code>]</p>
+<doc-anchor-target id="additional-tutorials">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#additional-tutorials">#</doc-anchor-trigger>
+        <span>Additional Tutorials</span>
+    </h2>
+</doc-anchor-target>
+<p>Explore these advanced topics:</p>
+<ul>
+<li><strong>Custom Scripts</strong>: Add Lua or JavaScript scripts for features like auto-cropping or playlists (<a href="https://github.com/mpv-player/mpv/wiki/User-Scripts">mpv wiki</a>).</li>
+<li><strong>Debanding</strong>: Reduce color banding with advanced profiles (<a href="../configuration/#advanced-config">Configuration</a>).</li>
+<li><strong>HDR Playback</strong>: Optimize for HDR displays (<a href="../configuration/#advanced-config">Configuration</a>).</li>
+</ul>
+<doc-anchor-target id="troubleshooting">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#troubleshooting">#</doc-anchor-trigger>
+        <span>Troubleshooting</span>
+    </h2>
+</doc-anchor-target>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Issue</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Streaming Fails</strong></td>
+<td>Update <code v-pre>yt-dlp</code>: <code v-pre>pip install --upgrade yt-dlp</code>. Verify URL.</td>
+</tr>
+<tr>
+<td><strong>No Subtitles Loaded</strong></td>
+<td>Ensure <code v-pre>sub-auto=fuzzy</code> in <code v-pre>mpv.conf</code> or use <code v-pre>--sub-file</code>.</td>
+</tr>
+<tr>
+<td><strong>Hardware Decoding Fails</strong></td>
+<td>Try specific API: <code v-pre>--hwdec=vaapi</code>, etc. Check GPU support.</td>
+</tr>
+<tr>
+<td><strong>Playback Lags</strong></td>
+<td>Lower streaming resolution: <code v-pre>--ytdl-format=bestvideo[height&lt;=720]</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>[Placeholder for gif: Troubleshooting streaming issues, <code v-pre>/static/tutorials/mpv/mpv-troubleshoot-streaming.gif</code>]</p>
+
+                                
+                                <!-- Required only on API pages -->
+                                <doc-toolbar-member-filter-no-results></doc-toolbar-member-filter-no-results>
+                            </div>
+                            <footer class="clear-both">
+                            
+                                <nav class="flex mt-14">
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 h-full flex items-center break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="../installation/">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                            <span>
+                                                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                                                <span class="block mt-1">Installation</span>
+                                            </span>
+                                        </a>
+                                    </div>
+                            
+                                    <div class="w-1/2">
+                                        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="../usage/">
+                                            <span>
+                                                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                                                <span class="block mt-1">Usage</span>
+                                            </span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+                                        </a>
+                                    </div>
+                                </nav>
+                            </footer>
+                        </main>
+                
+                        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+                            <footer class="flex flex-wrap items-center justify-between">
+                                <div>
+                                    <ul class="flex flex-wrap items-center text-sm">
+                                        <li>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://mpv.io">MPV.io</a>
+                                        </li>
+                                        <li>
+                                            <a class="block mr-4 py-2 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://wiki.archlinux.org/title/Mpv">Arch Wiki</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© 2025 YourNameHere. All rights reserved.</p></div>
+                            </footer>
+                        </div>
+                    </div>
+                
+                    <!-- Rendered if sidebar right is enabled -->
+                    <!-- Sidebar right skeleton-->
+                    <div v-cloak class="fixed top-0 bottom-0 right-0 translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:shrink-0 lg:pt-6 lg:transform-none sm:w-1/2 lg:w-64 lg:z-0 md:w-104 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+                        <div class="pl-5">
+                            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+                        </div>
+                    </div>
+                
+                    <!-- User should be able to hide sidebar right -->
+                    <doc-sidebar-right v-cloak></doc-sidebar-right>
+                </div>
+
+            </div>
+        </div>
+    
+        <doc-search-mobile></doc-search-mobile>
+        <doc-back-to-top></doc-back-to-top>
+    </div>
+
+
+    <div id="docs-overlay-target"></div>
+
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Tutorials", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+</body>
+</html>
