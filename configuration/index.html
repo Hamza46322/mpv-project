@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.8.1.801090054495">
+    <meta name="turbo-root" content="/mpv-project">
+    <meta name="turbo-cache-control" content="no-cache" data-turbo-track="reload" data-track-token="3.8.1.801123965102">
 
     <!-- See retype.com -->
     <meta name="generator" content="Retype 3.8.1">
@@ -11,30 +12,33 @@
     <!-- Primary Meta Tags -->
     <title>ConfigurationMPV Guide - Master MPV Player</title>
     <meta name="title" content="ConfigurationMPV Guide - Master MPV Player">
-    <meta name="description" content="Learn how to configure mpv for optimal performance and customization">
+    <meta name="description" content="Guide to configure mpv with basic and advanced settings">
 
     <!-- Canonical -->
-    <link rel="canonical" href="https://mpv-guide.local/configuration/">
+    <link rel="canonical" href="https://hamza46322.github.io/mpv-project/configuration/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://mpv-guide.local/configuration/">
+    <meta property="og:url" content="https://hamza46322.github.io/mpv-project/configuration/">
     <meta property="og:title" content="ConfigurationMPV Guide - Master MPV Player">
-    <meta property="og:description" content="Learn how to configure mpv for optimal performance and customization">
+    <meta property="og:description" content="Guide to configure mpv with basic and advanced settings">
+    <meta property="og:image" content="https://user-images.githubusercontent.com/78981416/214381256-e5722886-57d7-4cd4-834e-edbd30b432e0.png">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://mpv-guide.local/configuration/">
+    <meta property="twitter:url" content="https://hamza46322.github.io/mpv-project/configuration/">
     <meta property="twitter:title" content="ConfigurationMPV Guide - Master MPV Player">
-    <meta property="twitter:description" content="Learn how to configure mpv for optimal performance and customization">
+    <meta property="twitter:description" content="Guide to configure mpv with basic and advanced settings">
+    <meta property="twitter:image" content="https://user-images.githubusercontent.com/78981416/214381256-e5722886-57d7-4cd4-834e-edbd30b432e0.png">
 
     <script data-cfasync="false">(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="../resources/css/retype.css?v=3.8.1.801090054495" rel="stylesheet">
+    <link href="../resources/css/retype.css?v=3.8.1.801123965102" rel="stylesheet">
 
-    <script data-cfasync="false" src="../resources/js/config.js?v=3.8.1.801090054495" data-turbo-eval="false" defer></script>
+    <script data-cfasync="false" src="../resources/js/config.js?v=3.8.1.801123965102" data-turbo-eval="false" defer></script>
     <script data-cfasync="false" src="../resources/js/retype.js?v=3.8.1" data-turbo-eval="false" defer></script>
-    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.8.1.801090054495" data-turbo-eval="false" defer></script>
+    <script id="lunr-js" data-cfasync="false" src="../resources/js/lunr.js?v=3.8.1.801123965102" data-turbo-eval="false" defer></script>
+    <script id="prism-js" data-cfasync="false" src="../resources/js/prism.js?v=3.8.1.801123965102" defer></script>
 </head>
 <body>
     <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -158,258 +162,462 @@
         <span>Configuration</span>
     </h1>
 </doc-anchor-target>
-<p>This guide explains how to configure <a href="https://mpv.io">mpv</a> to enhance playback quality, performance, and usability. mpv uses a text-based configuration file (<code v-pre>mpv.conf</code>) for customization, with support for profiles, scripts, and platform-specific tweaks as of May 2025.</p>
+<p>This section guides you through configuring <a href="https://mpv.io/">mpv</a> to suit your needs, from basic settings to advanced customizations like debanding, scaling, and custom scripts.</p>
 <doc-anchor-target id="config-overview">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#config-overview">#</doc-anchor-trigger>
         <span>Config Overview</span>
     </h2>
 </doc-anchor-target>
-<p>mpv’s configuration is stored in <code v-pre>mpv.conf</code>, located in platform-specific directories. Customize it to adjust video output, audio settings, subtitles, and key bindings.</p>
-<doc-anchor-target id="location">
+<p>By default, mpv’s configuration files are located in <code v-pre>%APPDATA%/mpv/</code> on Windows, <code v-pre>~/.config/mpv/</code> on Linux, and <code v-pre>~/.mpv/</code> on macOS. However, a folder named <code v-pre>portable_config</code> next to <code v-pre>mpv.exe</code> can override this location.</p>
+<doc-anchor-target id="default-appdata-on-windows-configmpv-on-linux-mpv-on-macos">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#location">#</doc-anchor-trigger>
-        <span>Location</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#default-appdata-on-windows-configmpv-on-linux-mpv-on-macos">#</doc-anchor-trigger>
+        <span>Default (<code v-pre>%APPDATA%</code> on Windows, <code v-pre>~/.config/mpv/</code> on Linux, <code v-pre>~/.mpv/</code> on macOS)</span>
     </h3>
 </doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-properties"><code v-pre class="language-properties">.
+└── mpv/
+    ├── fonts/
+    ├── script-opts/
+    ├── scripts/
+    ├── shaders/
+    ├── input.conf
+    └── mpv.conf</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="portable-portable_config">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#portable-portable_config">#</doc-anchor-trigger>
+        <span>Portable (<code v-pre>portable_config</code>)</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-properties"><code v-pre class="language-properties">.
+├── mpv.exe
+└── portable_config/
+    ├── fonts/
+    ├── script-opts/
+    ├── scripts/
+    ├── shaders/
+    ├── input.conf
+    └── mpv.conf</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="scoop-userprofilescooppersistmpv-git-on-windows">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#scoop-userprofilescooppersistmpv-git-on-windows">#</doc-anchor-trigger>
+        <span>Scoop (<code v-pre>%userprofile%/scoop/persist/mpv-git</code> on Windows)</span>
+    </h3>
+</doc-anchor-target>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-properties"><code v-pre class="language-properties">.
+└── portable_config/
+    ├── fonts/
+    ├── script-opts/
+    ├── scripts/
+    ├── shaders/
+    ├── input.conf
+    └── mpv.conf</code></pre>
+</doc-codeblock></div>
 <div class="table-wrapper scrollbar overflow-hidden">
 <table class="comfortable">
 <thead>
 <tr>
-<th>Platform</th>
-<th>Default Config Path</th>
+<th>File</th>
+<th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Windows</td>
-<td><code v-pre>%APPDATA%\mpv\mpv.conf</code> or <code v-pre>portable_config\mpv.conf</code></td>
+<td><code v-pre>fonts/</code></td>
+<td>Directory for custom font files, typically used for subtitles.</td>
 </tr>
 <tr>
-<td>macOS</td>
-<td><code v-pre>~/.config/mpv/mpv.conf</code></td>
+<td><code v-pre>scripts/</code></td>
+<td>Directory for <doc-anchor-trigger to="#custom-scripts">custom scripts</doc-anchor-trigger>, usually <code v-pre>.lua</code> files.</td>
 </tr>
 <tr>
-<td>Linux</td>
-<td><code v-pre>~/.config/mpv/mpv.conf</code></td>
+<td><code v-pre>shaders/</code></td>
+<td>Directory for custom shaders used in <doc-anchor-trigger to="#scaling">scaling</doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><code v-pre>script-opts/</code></td>
+<td>Directory for additional options/configs used by custom scripts.</td>
+</tr>
+<tr>
+<td><code v-pre>mpv.conf</code></td>
+<td>General user configuration for mpv.</td>
+</tr>
+<tr>
+<td><code v-pre>input.conf</code></td>
+<td>Keybind settings for mpv.</td>
 </tr>
 </tbody>
 </table>
 </div>
-<doc-anchor-target id="creating-the-config-file">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-the-config-file">#</doc-anchor-trigger>
-        <span>Creating the Config File</span>
-    </h3>
-</doc-anchor-target>
-<ol>
-<li><p>Navigate to the appropriate directory (see table).</p>
-</li>
-<li><p>Create <code v-pre>mpv.conf</code> with a text editor (e.g., Notepad on Windows, <code v-pre>nano</code> on Linux/macOS).</p>
-</li>
-<li><p>Add settings in <code v-pre>key=value</code> format, e.g.:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">vo=gpu
-hwdec=auto
-# Comment to document settings</code></pre>
-</doc-codeblock></div>
-</li>
-</ol>
-<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-blue-500 dark:text-blue-400 border border-blue-500 dark:border-blue-400 h-6 px-2 text-xs rounded-md">
-    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M13 7.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-3 3.75a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v4.25h.75a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5h.75V12h-.75a.75.75 0 0 1-.75-.75Z"/><path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1ZM2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5 9.5 9.5 0 0 0 2.5 12Z"/></g></svg></span>
-    <span>Note</span>
-</span> For portable setups, place <code v-pre>mpv.conf</code> in a <code v-pre>portable_config</code> folder next to <code v-pre>mpv.exe</code>. Use <code v-pre>--show-profile</code> to verify loaded settings.</p>
-<doc-anchor-target id="profiles">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#profiles">#</doc-anchor-trigger>
-        <span>Profiles</span>
-    </h3>
-</doc-anchor-target>
-<p>Define profiles in <code v-pre>mpv.conf</code> to switch configurations easily:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none">[high-quality]
-scale=ewa_lanczossharp
-cscale=ewa_lanczossharp
-profile=gpu-hq
-
-[low-power]
-vo=gpu
-hwdec=no
-scale=bilinear</code></pre>
-</doc-codeblock></div>
-<p>Activate with <code v-pre>mpv --profile=high-quality video.mp4</code>.</p>
+<p>Some folders may not be present by default and will need to be created. For more details, see <a href="https://mpv.io/manual/master/#files">mpv&#x27;s documentation on files</a>.</p>
 <doc-anchor-target id="basic-config">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#basic-config">#</doc-anchor-trigger>
         <span>Basic Config</span>
     </h2>
 </doc-anchor-target>
-<p>Ideal for most users, this config enhances default settings for quality and usability.</p>
-<doc-anchor-target id="recommended-settings">
+<p>mpv is a great player out of the box but can be customized extensively. We recommend creating your own config, but if you want to get started quickly, use the generic <code v-pre>mpv.conf</code> below:</p>
+<doc-anchor-target id="generic-mpvconf">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#recommended-settings">#</doc-anchor-trigger>
-        <span>Recommended Settings</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#generic-mpvconf">#</doc-anchor-trigger>
+        <span>Generic <code v-pre>mpv.conf</code></span>
     </h3>
 </doc-anchor-target>
-<p>Edit or create <code v-pre>mpv.conf</code> with:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none"># Video output and decoding
-vo=gpu              # GPU-based rendering
-hwdec=auto          # Auto-enable hardware decoding
-
-# Video quality
-profile=gpu-hq      # High-quality GPU profile
-scale=ewa_lanczos   # High-quality upscaling
-cscale=ewa_lanczos  # High-quality chroma scaling
-dscale=mitchell     # Downscaling algorithm
-scale-antiring=0.7  # Reduce scaling artifacts
-
-# Interpolation for smoother motion
-interpolation       # Enable frame blending
-tscale=oversample   # Smooth motion algorithm
-
-# Audio settings
-audio-channels=auto # Auto-select channels
-af=default          # Default audio filters
-
-# Subtitles
-sub-auto=fuzzy      # Load matching subtitle files
-sub-font-size=48    # Readable subtitle size
-sub-color=#FFFFFF   # White subtitles
-
-# On-Screen Display
-osd-font-size=24    # Clear OSD text
-osd-level=1         # Minimal OSD info</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="applying-the-config">
+<p>[Placeholder for file: Generic <code v-pre>mpv.conf</code>, <code v-pre>/static/tutorials/mpv/portable_config/mpv.conf</code>, lines 1-30]</p>
+<doc-anchor-target id="understanding-the-config">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#applying-the-config">#</doc-anchor-trigger>
-        <span>Applying the Config</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#understanding-the-config">#</doc-anchor-trigger>
+        <span>Understanding the Config</span>
     </h3>
 </doc-anchor-target>
-<ol>
-<li>Save <code v-pre>mpv.conf</code>.</li>
-<li>Test with <code v-pre>mpv video.mp4</code>. Expect better video quality and smoother playback.</li>
-</ol>
-<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-green-700 bg-green-100 h-6 px-2 text-xs rounded-md">
-    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M21.03 5.72a.75.75 0 0 1 0 1.06l-11.5 11.5a.747.747 0 0 1-1.072-.012l-5.5-5.75a.75.75 0 1 1 1.084-1.036l4.97 5.195L19.97 5.72a.75.75 0 0 1 1.06 0Z"/></g></svg></span>
-    <span>Tip</span>
-</span> If playback lags, disable <code v-pre>interpolation</code> by commenting it out (<code v-pre>#interpolation</code>) and retry.</p>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-blue-500 dark:text-blue-400 border border-blue-500 dark:border-blue-400 h-6 px-2 text-xs rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M13 7.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-3 3.75a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v4.25h.75a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5h.75V12h-.75a.75.75 0 0 1-.75-.75Z"/><path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1ZM2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5 9.5 9.5 0 0 0 2.5 12Z"/></g></svg></span>
+    <span>Note</span>
+</span> See <a href="https://mpv.io/manual/stable">mpv&#x27;s user manual</a> for a detailed explanation of all options.</p>
+<div class="table-wrapper scrollbar overflow-hidden">
+<table class="comfortable">
+<thead>
+<tr>
+<th>Option</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://mpv.io/manual/master/#profiles"><code v-pre>profile</code></a></td>
+<td>The profile to be used by mpv. This should be at the top to avoid conflicts.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#video-output-drivers"><code v-pre>vo</code></a></td>
+<td>The output driver. <code v-pre>gpu-next</code> is recommended for modern hardware.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#options-scale-antiring"><code v-pre>scale-antiring</code></a></td>
+<td>Strength of the antiringing filter. Avoid high values to prevent artifacts.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#options-dither-depth"><code v-pre>dither-depth</code></a></td>
+<td>Dither depth. Set to your monitor’s bit depth to prevent <doc-anchor-trigger to="#debanding">banding</doc-anchor-trigger>.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#options-keep-open"><code v-pre>keep-open</code></a></td>
+<td>Whether to close the player after playback. Use <code v-pre>no</code> to close.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#resuming-playback"><code v-pre>save-position-on-quit</code></a></td>
+<td>Save playback position on quit. Remove if you don’t want this.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#options-screenshot-format"><code v-pre>screenshot-format</code></a></td>
+<td>File format for screenshots. <code v-pre>png</code> is recommended for lossless quality.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#options-screenshot-dir"><code v-pre>screenshot-dir</code></a></td>
+<td>Directory for screenshots. Currently set to <code v-pre>Pictures/mpv</code>.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#options-screenshot-template"><code v-pre>screenshot-template</code></a></td>
+<td>Naming scheme for screenshots. <code v-pre>%F-%p</code> translates to <code v-pre>filename-timestamp</code>.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#options-slang"><code v-pre>slang</code></a></td>
+<td>Priority list of subtitle languages.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#options-alang"><code v-pre>alang</code></a></td>
+<td>Priority list of audio languages.</td>
+</tr>
+<tr>
+<td><a href="https://mpv.io/manual/master/#options-subs-with-matching-audio"><code v-pre>subs-with-matching-audio</code></a></td>
+<td>Ensures subtitle and audio track languages match.</td>
+</tr>
+</tbody>
+</table>
+</div>
 <doc-anchor-target id="advanced-config">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#advanced-config">#</doc-anchor-trigger>
         <span>Advanced Config</span>
     </h2>
 </doc-anchor-target>
-<p>For power users, these settings optimize for high-quality playback, HDR, and hardware-specific needs.</p>
-<doc-anchor-target id="video-enhancements">
+<p>Fine-tune mpv for specific needs, from playback behavior to video, audio, and subtitle settings.</p>
+<doc-anchor-target id="debanding">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#video-enhancements">#</doc-anchor-trigger>
-        <span>Video Enhancements</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#debanding">#</doc-anchor-trigger>
+        <span>Debanding</span>
     </h3>
 </doc-anchor-target>
+<p>Color banding is a visual artifact seen in gradients. mpv includes debanding capabilities, enabled by pressing <code v-pre>b</code> during playback.</p>
+<p><figure class="content-center">
+    <img src="https://user-images.githubusercontent.com/78981416/214381256-e5722886-57d7-4cd4-834e-edbd30b432e0.png" alt="Banding (left) vs. No banding (right)">
+    <figcaption class="caption">Banding (left) vs. No banding (right)</figcaption>
+</figure>
+</p>
+<p>For more aggressive debanding, use these profiles in <code v-pre>mpv.conf</code>:</p>
 <div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none"># Advanced rendering
-vo=gpu-next         # Next-gen GPU renderer (if supported)
-gpu-api=vulkan      # Use Vulkan (or d3d11 on Windows)
-hwdec-codecs=all    # Decode all codecs via hardware
-
-# HDR and color
-hdr-compute-peak=yes    # Detect HDR peak brightness
-tone-mapping=bt.2390    # HDR tone mapping
-target-colorspace=bt.2020  # BT.2020 colorspace
-target-prim=bt.2020     # Accurate color primaries
-
-# Debanding
-deband=yes          # Reduce banding artifacts
-deband-iterations=2 # Two passes
-deband-threshold=48 # Adjust strength
-
-# Frame timing
-video-sync=display-resample  # Sync to display refresh rate</code></pre>
+<pre class="language-properties"><code v-pre class="language-properties">[BrazzersDeband]
+deband=yes
+deband-iterations=4
+deband-threshold=64
+deband-range=20
+deband-grain=32</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-properties"><code v-pre class="language-properties">[HiroshimaDeband]
+deband-iterations=4
+deband-threshold=100
+deband-range=8
+deband-grain=32</code></pre>
 </doc-codeblock></div>
 <p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-yellow-900 bg-yellow-100 h-6 px-2 text-xs rounded-md">
     <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M13 17.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-8.25a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0v-4.5Z"/><path d="M9.836 3.244c.963-1.665 3.365-1.665 4.328 0l8.967 15.504c.963 1.667-.24 3.752-2.165 3.752H3.034c-1.926 0-3.128-2.085-2.165-3.752Zm3.03.751a1.002 1.002 0 0 0-1.732 0L2.168 19.499A1.002 1.002 0 0 0 3.034 21h17.932a1.002 1.002 0 0 0 .866-1.5L12.866 3.994Z"/></g></svg></span>
     <span>Warning</span>
-</span> <code v-pre>vo=gpu-next</code> and HDR settings may fail on older GPUs. Test and revert if needed.</p>
-<doc-anchor-target id="audio-enhancements">
+</span> Stronger settings may cause detail loss. Use sparingly.</p>
+<doc-anchor-target id="scaling">
     <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#audio-enhancements">#</doc-anchor-trigger>
-        <span>Audio Enhancements</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#scaling">#</doc-anchor-trigger>
+        <span>Scaling</span>
     </h3>
 </doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none"># High-quality audio
-audio-resampler=soxr    # SoX resampler
-audio-resampler-quality=5  # Max quality (0-5)
-
-# Audio filters
-af=lavfi=[volume=2.0]   # Double volume (adjust as needed)
-audio-pitch-correction=yes  # Preserve pitch during speed changes</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="custom-key-bindings">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#custom-key-bindings">#</doc-anchor-trigger>
-        <span>Custom Key Bindings</span>
-    </h3>
+<p>Scaling resizes content to fit your display. mpv’s <code v-pre>high-quality</code> profile uses <code v-pre>ewa_lanczossharp</code> for better upscaling (default is <code v-pre>lanczos</code> or <code v-pre>hermite</code>).</p>
+<doc-anchor-target id="high-end-pcs">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#high-end-pcs">#</doc-anchor-trigger>
+        <span>High-End PCs</span>
+    </h4>
 </doc-anchor-target>
-<p>Create <code v-pre>input.conf</code> in the same directory:</p>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none"># Toggle play/pause
-SPACE cycle pause
-# Seek 10 seconds
-RIGHT seek 10
-LEFT seek -10
-# Volume control
-UP volume 5
-DOWN volume -5</code></pre>
-</doc-codeblock></div>
-<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-blue-500 dark:text-blue-400 border border-blue-500 dark:border-blue-400 h-6 px-2 text-xs rounded-md">
-    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M13 7.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-3 3.75a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v4.25h.75a.75.75 0 0 1 0 1.5h-3a.75.75 0 0 1 0-1.5h.75V12h-.75a.75.75 0 0 1-.75-.75Z"/><path d="M12 1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12 5.925 1 12 1ZM2.5 12a9.5 9.5 0 0 0 9.5 9.5 9.5 9.5 0 0 0 9.5-9.5A9.5 9.5 0 0 0 12 2.5 9.5 9.5 0 0 0 2.5 12Z"/></g></svg></span>
-    <span>Note</span>
-</span> See <a href="https://mpv.io/manual/master/#input-commands">mpv input commands</a> for more options.</p>
-<doc-anchor-target id="performance-tweaks">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#performance-tweaks">#</doc-anchor-trigger>
-        <span>Performance Tweaks</span>
-    </h3>
-</doc-anchor-target>
-<div class="codeblock-wrapper"><doc-codeblock>
-<pre class="language-none"><code v-pre class="language-none"># Optimize for low-end systems
-cache=yes            # Enable caching
-cache-secs=60        # Buffer 60 seconds
-demuxer-max-bytes=50M  # Limit memory usage</code></pre>
-</doc-codeblock></div>
-<doc-anchor-target id="platform-specific-notes">
-    <h3>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#platform-specific-notes">#</doc-anchor-trigger>
-        <span>Platform-Specific Notes</span>
-    </h3>
-</doc-anchor-target>
+<p>Use shaders for optimal quality:</p>
 <ul>
-<li><strong>Windows</strong>: Use <code v-pre>gpu-api=d3d11</code> and <code v-pre>hwdec=d3d11va</code> for best results with NVIDIA/AMD GPUs.</li>
-<li><strong>macOS/Linux</strong>: Prefer <code v-pre>gpu-api=vulkan</code> or <code v-pre>gpu-api=opengl</code> with <code v-pre>hwdec=vaapi</code> (Intel/AMD) or <code v-pre>hwdec=nvdec</code> (NVIDIA).</li>
+<li><a href="https://github.com/Artoriuz/ArtCNN/blob/main/GLSL/ArtCNN_C4F32.glsl">ArtCNN_C4F32.glsl</a> for high-quality sources.</li>
+<li><a href="https://github.com/bjin/mpv-prescalers/blob/master/compute/nnedi3-nns128-win8x4.hook">nnedi3-nns128-win8x4.hook</a> for low-quality sources.</li>
 </ul>
-<doc-anchor-target id="troubleshooting-config-issues">
+<p>Place shaders in the <code v-pre>shaders</code> folder and add to <code v-pre>input.conf</code>:
+[Placeholder for file: <code v-pre>input.conf</code>, <code v-pre>/static/tutorials/mpv/portable_config/input.conf</code>, line 2]</p>
+<p>Toggle with <code v-pre>g</code> during playback.</p>
+<doc-anchor-target id="mid-range-pcs">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#mid-range-pcs">#</doc-anchor-trigger>
+        <span>Mid-Range PCs</span>
+    </h4>
+</doc-anchor-target>
+<p>Use the <code v-pre>high-quality</code> profile in <code v-pre>mpv.conf</code>:
+[Placeholder for file: <code v-pre>mpv.conf</code>, <code v-pre>/static/tutorials/mpv/portable_config/mpv.conf</code>, lines 1-4]</p>
+<doc-anchor-target id="low-end-pcs">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#low-end-pcs">#</doc-anchor-trigger>
+        <span>Low-End PCs</span>
+    </h4>
+</doc-anchor-target>
+<p>Use mpv’s default profile for balanced performance.</p>
+<doc-anchor-target id="potato-pcs">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#potato-pcs">#</doc-anchor-trigger>
+        <span>Potato PCs</span>
+    </h4>
+</doc-anchor-target>
+<p>Use the <code v-pre>fast</code> profile for performance:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-properties"><code v-pre class="language-properties">profile=fast</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="dither">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#dither">#</doc-anchor-trigger>
+        <span>Dither</span>
+    </h3>
+</doc-anchor-target>
+<p>Dithering reduces visual artifacts like banding. Set your display’s bit depth in <code v-pre>mpv.conf</code>:
+[Placeholder for file: <code v-pre>mpv.conf</code>, <code v-pre>/static/tutorials/mpv/portable_config/mpv.conf</code>, line 8]</p>
+<p>On Windows, check bit depth in <strong>Settings</strong> &gt; <strong>Display</strong> &gt; <strong>Advanced display settings</strong> &gt; <strong>Display information</strong> &gt; <strong>Bit depth</strong>.</p>
+<doc-anchor-target id="subtitle-restyling">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#subtitle-restyling">#</doc-anchor-trigger>
+        <span>Subtitle Restyling</span>
+    </h3>
+</doc-anchor-target>
+<p>Override subtitle fonts for better readability.</p>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-yellow-900 bg-yellow-100 h-6 px-2 text-xs rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M13 17.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-8.25a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0v-4.5Z"/><path d="M9.836 3.244c.963-1.665 3.365-1.665 4.328 0l8.967 15.504c.963 1.667-.24 3.752-2.165 3.752H3.034c-1.926 0-3.128-2.085-2.165-3.752Zm3.03.751a1.002 1.002 0 0 0-1.732 0L2.168 19.499A1.002 1.002 0 0 0 3.034 21h17.932a1.002 1.002 0 0 0 .866-1.5L12.866 3.994Z"/></g></svg></span>
+    <span>Warning</span>
+</span> Restyling may cause rendering issues in some cases.</p>
+<doc-anchor-target id="gandhi-sans">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#gandhi-sans">#</doc-anchor-trigger>
+        <span>Gandhi Sans</span>
+    </h4>
+</doc-anchor-target>
+<p><figure class="content-center">
+    <img src="../assets/images/gandhi-sans-cropped.png" alt="Gandhi Sans">
+    <figcaption class="caption">Gandhi Sans</figcaption>
+</figure>
+</p>
+<p><a href="https://fontmeme.com/fonts/gandhi-sans-font">Download this font here</a> or use the button below:</p>
+<p><button class="no-link inline-flex align-middle items-center font-medium cursor-pointer transition-colors duration-200 ease-out focus:outline-none bg-blue-500 hover:bg-blue-700 text-white px-4 h-10 text-sm rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M4.75 17.25a.75.75 0 0 1 .75.75v2.25c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V18a.75.75 0 0 1 1.5 0v2.25A1.75 1.75 0 0 1 18.25 22H5.75A1.75 1.75 0 0 1 4 20.25V18a.75.75 0 0 1 .75-.75Z"/><path d="M5.22 9.97a.749.749 0 0 1 1.06 0l4.97 4.969V2.75a.75.75 0 0 1 1.5 0v12.189l4.97-4.969a.749.749 0 1 1 1.06 1.06l-6.25 6.25a.749.749 0 0 1-1.06 0l-6.25-6.25a.749.749 0 0 1 0-1.06Z"/></g></svg></span>
+    <span>Download Gandhi Sans</span>
+</button></p>
+<p>Add to <code v-pre>mpv.conf</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-properties"><code v-pre class="language-properties">sub-ass-override=no
+sub-ass-style-overrides=playresx=1920,playresy=1080
+sub-font=&quot;Gandhi Sans&quot;
+sub-font-size=50
+sub-color=&quot;#FFFFFF&quot;
+sub-margin-y=40
+sub-border-size=2.4
+sub-border-color=&quot;#FF000000&quot;
+sub-shadow-color=&quot;#A0000000&quot;
+sub-shadow-offset=0.75
+sub-bold=yes
+sub-ass-style-overrides=Kerning=yes</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cabin">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cabin">#</doc-anchor-trigger>
+        <span>Cabin</span>
+    </h4>
+</doc-anchor-target>
+<p><figure class="content-center">
+    <img src="../assets/images/cabin-cropped.png" alt="Cabin">
+    <figcaption class="caption">Cabin</figcaption>
+</figure>
+</p>
+<p><a href="https://fontmeme.com/fonts/cabin-font">Download this font here</a> or use the button below:</p>
+<p><button class="no-link inline-flex align-middle items-center font-medium cursor-pointer transition-colors duration-200 ease-out focus:outline-none bg-blue-500 hover:bg-blue-700 text-white px-4 h-10 text-sm rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M4.75 17.25a.75.75 0 0 1 .75.75v2.25c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V18a.75.75 0 0 1 1.5 0v2.25A1.75 1.75 0 0 1 18.25 22H5.75A1.75 1.75 0 0 1 4 20.25V18a.75.75 0 0 1 .75-.75Z"/><path d="M5.22 9.97a.749.749 0 0 1 1.06 0l4.97 4.969V2.75a.75.75 0 0 1 1.5 0v12.189l4.97-4.969a.749.749 0 1 1 1.06 1.06l-6.25 6.25a.749.749 0 0 1-1.06 0l-6.25-6.25a.749.749 0 0 1 0-1.06Z"/></g></svg></span>
+    <span>Cabin</span>
+</button></p>
+<p>Add to <code v-pre>mpv.conf</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-properties"><code v-pre class="language-properties">sub-ass-override=no
+sub-ass-style-overrides=playresx=1920,playresy=1080
+sub-font=&quot;Cabin&quot;
+sub-font-size=50
+sub-color=&quot;#FFFFFFFF&quot;
+sub-margin-y=40
+sub-border-size=2.4
+sub-border-color=&quot;#FF000000&quot;
+sub-shadow-color=&quot;#A0000000&quot;
+sub-shadow-offset=0.8
+sub-ass-style-overrides=Kerning=yes</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="cabin-f">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#cabin-f">#</doc-anchor-trigger>
+        <span>Cabin F</span>
+    </h4>
+</doc-anchor-target>
+<p><figure class="content-center">
+    <img src="../assets/images/cabin-f-cropped.png" alt="Cabin F">
+    <figcaption class="caption">Cabin F</figcaption>
+</figure>
+</p>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-gray-600 dark:text-dark-600 bg-gray-200 h-6 px-2 text-xs rounded-md">
+    <span>Note</span>
+</span> This is a modified version of Cabin by <em>@astolfo69 (RaptoR)</em> in the <a href="https://discord.com/invite/jPeeZewWRn">SeaDex Discord server</a>.</p>
+<p>Use the button below:</p>
+<p><button class="no-link inline-flex align-middle items-center font-medium cursor-pointer transition-colors duration-200 ease-out focus:outline-none bg-blue-500 hover:bg-blue-700 text-white px-4 h-10 text-sm rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M4.75 17.25a.75.75 0 0 1 .75.75v2.25c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V18a.75.75 0 0 1 1.5 0v2.25A1.75 1.75 0 0 1 18.25 22H5.75A1.75 1.75 0 0 1 4 20.25V18a.75.75 0 0 1 .75-.75Z"/><path d="M5.22 9.97a.749.749 0 0 1 1.06 0l4.97 4.969V2.75a.75.75 0 0 1 1.5 0v12.189l4.97-4.969a.749.749 0 1 1 1.06 1.06l-6.25 6.25a.749.749 0 0 1-1.06 0l-6.25-6.25a.749.749 0 0 1 0-1.06Z"/></g></svg></span>
+    <span>Cabin F</span>
+</button></p>
+<p>Add to <code v-pre>mpv.conf</code>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-properties"><code v-pre class="language-properties">sub-ass-override=no
+sub-ass-style-overrides=playresx=1920,playresy=1080
+sub-font=&quot;Cabin F&quot;
+sub-font-size=50
+sub-color=&quot;#FFFFFFFF&quot;
+sub-margin-y=40
+sub-border-size=2.4
+sub-border-color=&quot;#FF000000&quot;
+sub-shadow-color=&quot;#A0000000&quot;
+sub-shadow-offset=0.8
+sub-ass-style-overrides=Kerning=yes</code></pre>
+</doc-codeblock></div>
+<p>Toggle with a key by adding to <code v-pre>input.conf</code>:
+[Placeholder for file: <code v-pre>input.conf</code>, <code v-pre>/static/tutorials/mpv/portable_config/input.conf</code>, line 5]</p>
+<doc-anchor-target id="auto-profiles">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#auto-profiles">#</doc-anchor-trigger>
+        <span>Auto Profiles</span>
+    </h3>
+</doc-anchor-target>
+<p>Auto profiles automate actions based on conditions, like applying debanding for specific files. For example, apply debanding and subtitle restyling for releases by SubsPlease, Erai-raws, Tsundere-Raws, VARYG, or HorribleSubs:
+[Placeholder for file: <code v-pre>mpv.conf</code>, <code v-pre>/static/tutorials/mpv/portable_config/mpv.conf</code>, lines 32-40]</p>
+<p><span class="no-link inline-flex align-middle items-center justify-center font-medium leading-none whitespace-nowrap text-yellow-900 bg-yellow-100 h-6 px-2 text-xs rounded-md">
+    <span><svg xmlns="http://www.w3.org/2000/svg" class="mb-px inline-flex mr-2" width="18" height="18" viewBox="0 0 24 24" role="presentation"><g fill="currentColor"><path d="M13 17.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-.25-8.25a.75.75 0 0 0-1.5 0v4.5a.75.75 0 0 0 1.5 0v-4.5Z"/><path d="M9.836 3.244c.963-1.665 3.365-1.665 4.328 0l8.967 15.504c.963 1.667-.24 3.752-2.165 3.752H3.034c-1.926 0-3.128-2.085-2.165-3.752Zm3.03.751a1.002 1.002 0 0 0-1.732 0L2.168 19.499A1.002 1.002 0 0 0 3.034 21h17.932a1.002 1.002 0 0 0 .866-1.5L12.866 3.994Z"/></g></svg></span>
+    <span>Warning</span>
+</span> Place auto profiles at the end of <code v-pre>mpv.conf</code> to avoid conflicts.</p>
+<doc-anchor-target id="custom-scripts">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#custom-scripts">#</doc-anchor-trigger>
+        <span>Custom Scripts</span>
+    </h3>
+</doc-anchor-target>
+<p>Custom scripts allow you to extend <a href="https://mpv.io/">mpv</a>’s functionality beyond its default features, such as automating tasks or adding new capabilities. These scripts are typically written in Lua or JavaScript and can be loaded automatically by mpv.</p>
+<p>Below is a list of popular scripts:</p>
+<ul>
+<li><a href="https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/autocrop.lua">autocrop</a>: Automatically crops videos by detecting black bars using lavfi’s cropdetect filter.</li>
+<li><a href="https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/autoload.lua">autoload</a>: Adds all files in the current folder to a playlist automatically.</li>
+<li><a href="https://github.com/CogentRedTester/mpv-changerefresh">change-refresh</a>: Adjusts the display’s refresh rate to match the video’s frame rate.</li>
+<li><a href="https://github.com/jonniek/mpv-playlistmanager">mpv-playlistmanager</a>: Enables creating and managing playlists within mpv.</li>
+<li><a href="https://github.com/ekisu/mpv-webm">mpv-webm</a>: Creates WebM files directly from mpv.</li>
+<li><a href="https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/pause-when-minimize.lua">pause-when-minimize</a>: Pauses playback when minimizing the window and resumes when restored.</li>
+<li><a href="https://github.com/po5/thumbfast">thumbfast</a>: Displays thumbnails when scrubbing videos (required for some <doc-anchor-trigger to="#skins">Skins</doc-anchor-trigger>).</li>
+<li><a href="https://github.com/po5/trackselect">trackselect</a>: Selects audio or subtitle tracks based on their titles.</li>
+</ul>
+<p>For more scripts, check the <a href="https://github.com/mpv-player/mpv/wiki/User-Scripts">mpv scripts repository</a> or community forums.</p>
+<doc-anchor-target id="installation">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#installation">#</doc-anchor-trigger>
+        <span>Installation</span>
+    </h4>
+</doc-anchor-target>
+<ol>
+<li>Navigate to your mpv <doc-anchor-trigger to="#config-overview">Config Overview</doc-anchor-trigger> directory.</li>
+<li>Locate the <code v-pre>scripts</code> folder. If it doesn’t exist, create it.</li>
+<li>Place your script files (e.g., <code v-pre>.lua</code> files) into the <code v-pre>scripts</code> folder.</li>
+</ol>
+<p>Scripts are loaded automatically when you launch mpv. If mpv is already open, relaunch it for the scripts to take effect.</p>
+<doc-anchor-target id="skins">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#skins">#</doc-anchor-trigger>
+        <span>Skins</span>
+    </h3>
+</doc-anchor-target>
+<p>Customize mpv’s appearance with skins:</p>
+<ul>
+<li><a href="https://codeberg.org/NRK/mpv-toolbox/src/branch/master/mfpbar">mfpbar</a></li>
+<li><a href="https://github.com/cyl0/ModernX">ModernX</a></li>
+<li><a href="https://github.com/maoiscat/mpv-osc-modern">mpv-osc-modern</a></li>
+<li><a href="https://github.com/Zren/mpv-osc-tethys">mpv-osc-tethys</a></li>
+<li><a href="https://github.com/torque/mpv-progressbar">mpv-progressbar</a></li>
+<li><a href="https://github.com/longtermfree/oscc">oscc</a></li>
+<li><a href="https://github.com/tomasklaen/uosc">uosc</a></li>
+</ul>
+<doc-anchor-target id="troubleshooting">
     <h2>
-        <doc-anchor-trigger class="header-anchor-trigger" to="#troubleshooting-config-issues">#</doc-anchor-trigger>
-        <span>Troubleshooting Config Issues</span>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#troubleshooting">#</doc-anchor-trigger>
+        <span>Troubleshooting</span>
     </h2>
 </doc-anchor-target>
 <ul>
-<li><strong>Settings Ignored</strong>: Ensure <code v-pre>mpv.conf</code> is in the correct path. Run <code v-pre>mpv --no-config</code> to bypass config and isolate issues.</li>
-<li><strong>Performance Lag</strong>: Disable <code v-pre>interpolation</code> or switch <code v-pre>scale</code> to <code v-pre>bilinear</code>. Check live stats with <code v-pre>i</code> key.</li>
-<li><strong>Hardware Decoding Fails</strong>: Set <code v-pre>hwdec=no</code> or specify <code v-pre>hwdec=vaapi</code>/<code v-pre>nvdec</code> based on your GPU.</li>
-<li><strong>HDR Issues</strong>: Confirm display HDR support and match <code v-pre>target-colorspace</code> to content.</li>
+<li><strong>Config Not Applied</strong>: Ensure <code v-pre>mpv.conf</code> is in the correct directory (see <doc-anchor-trigger to="#config-overview">Config Overview</doc-anchor-trigger>).</li>
+<li><strong>Script Not Loading</strong>: Verify the script is in the <code v-pre>scripts</code> folder and relaunch mpv.</li>
+<li><strong>Shader Errors</strong>: Check shader compatibility with your hardware and ensure files are in the <code v-pre>shaders</code> folder.</li>
 </ul>
-<p>[Placeholder for screenshot: mpv HDR playback, <code v-pre>/static/tutorials/mpv/mpv-hdr-example.png</code>]</p>
 <doc-anchor-target id="next-steps">
     <h2>
         <doc-anchor-trigger class="header-anchor-trigger" to="#next-steps">#</doc-anchor-trigger>
         <span>Next Steps</span>
     </h2>
 </doc-anchor-target>
-<p>Explore playback techniques in the <a href="../usage/">Usage</a> section or enhance your setup with the <a href="../tutorials/">Tutorials</a> section.</p>
+<p>Explore basic commands in the <a href="../usage/">Usage</a> section, or return to <a href="../installation/">Installation</a> if you need to set up mpv on another system.</p>
 
                                 
                                 <!-- Required only on API pages -->
@@ -482,6 +690,6 @@ demuxer-max-bytes=50M  # Limit memory usage</code></pre>
 
     <div id="docs-overlay-target"></div>
 
-    <script data-cfasync="false">window.__DOCS__ = { "title": "Configuration", level: 1, icon: "file", hasPrism: false, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
+    <script data-cfasync="false">window.__DOCS__ = { "title": "Configuration", level: 1, icon: "file", hasPrism: true, hasMermaid: false, hasMath: false, tocDepth: 23 }</script>
 </body>
 </html>
